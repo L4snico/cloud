@@ -6,12 +6,21 @@ import "@fontsource/roboto/300.css"
 import "@fontsource/roboto/400.css"
 import "@fontsource/roboto/500.css"
 import "@fontsource/roboto/700.css"
-import { StyledEngineProvider } from "@mui/material"
+import { createTheme, CssBaseline, StyledEngineProvider, ThemeProvider } from "@mui/material"
+
+const darkTheme = createTheme({
+	palette: {
+		mode: "dark",
+	},
+})
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 	<React.StrictMode>
 		<StyledEngineProvider injectFirst>
-			<App />
+			<ThemeProvider theme={darkTheme}>
+				<CssBaseline />
+				<App />
+			</ThemeProvider>
 		</StyledEngineProvider>
 	</React.StrictMode>
 )
