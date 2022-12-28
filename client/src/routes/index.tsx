@@ -1,6 +1,7 @@
 import { Component } from "classes"
 import { Error404Page, HomePage } from "pages"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { authRoutes } from "./Auth"
 
 const router = createBrowserRouter([
 	{
@@ -8,6 +9,7 @@ const router = createBrowserRouter([
 		element: <HomePage />,
 		errorElement: <Error404Page />,
 	},
+	...authRoutes,
 ])
 
 export default class Routes extends Component {
