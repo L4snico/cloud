@@ -11,10 +11,12 @@ export class TopBarHome extends Component {
 					<AppBar position="static" variant="outlined">
 						<Toolbar className="w-full">
 							<div className="flex w-full">
-								<Button variant="text" color="inherit">
-									<Cloud className="mr-2" />
-									<Typography>Cloud</Typography>
-								</Button>
+								<Link to="/">
+									<Button variant="text" color="inherit">
+										<Cloud className="mr-2" />
+										<Typography>Cloud</Typography>
+									</Button>
+								</Link>
 							</div>
 							<div className="flex justify-end w-full">
 								<Button variant="text" color="inherit" className="mr-2">
