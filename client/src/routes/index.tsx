@@ -1,11 +1,12 @@
 import { Component } from "classes"
-import { HomePage } from "pages"
+import { Error404Page, HomePage } from "pages"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
 const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <HomePage />,
+		errorElement: <Error404Page />,
 	},
 ])
 
