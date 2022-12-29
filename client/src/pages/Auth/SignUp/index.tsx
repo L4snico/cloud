@@ -1,13 +1,16 @@
 import { Container } from "@mui/material"
 import { Component } from "classes"
 import { TopBarHome } from "components"
+import { AuthView } from "View"
 
 export class SignUpPage extends Component {
 	static build(): JSX.Element {
 		return (
 			<>
 				<TopBarHome />
-				<Container className="mt-10">sign up</Container>
+				<Container>
+					<AuthView.UserSignUp />
+				</Container>
 			</>
 		)
 	}
