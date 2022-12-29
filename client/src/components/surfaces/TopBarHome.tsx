@@ -8,7 +8,7 @@ export class TopBarHome extends Component {
 		return (
 			<>
 				<Container>
-					<AppBar position="static" variant="outlined">
+					<AppBar position="static" variant="outlined" elevation={0}>
 						<Toolbar className="w-full">
 							<div className="flex w-full">
 								<Link to="/">
