@@ -3,12 +3,12 @@ import path from "path"
 import { buildSchema } from "type-graphql"
 import { ApolloServer } from "apollo-server"
 import signale from "signale"
-import { graphQlResolvers } from "src/graphql/resolvers"
+import { gqlResolvers } from "src/graphql/resolvers"
 
 class Server {
-	static async main() {
+	static async init() {
 		const schema = await buildSchema({
-            resolvers: graphQlResolvers,
+            resolvers: gqlResolvers,
             emitSchemaFile: path.resolve(__dirname, "schema.gql")
         })
 
@@ -22,4 +22,4 @@ class Server {
 	}
 }
 
-Server.main()
+Server.init()
