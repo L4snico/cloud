@@ -2,8 +2,10 @@ import { hash } from "bcrypt"
 import { UserModel } from "src/Model"
 
 export class UserController {
+	private userModel = new UserModel()
+	
 	async createUser(data: TCreateUserData) {
-		const user = await UserModel.create({
+		const user = await this.userModel.create({
 			username: data.username,
 			email: data.email,
 			password: await this.hashPassword(data.password),
@@ -13,7 +15,7 @@ export class UserController {
 	}
 
     async getUsers() {
-        const users = await UserModel.findMany()
+        const users = await this.userModel.findMany()
 
         return users
     }

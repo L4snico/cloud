@@ -4,7 +4,7 @@ import { User } from "src/graphql/types";
 
 @Resolver()
 export class UserResolver {
-    private controller = new UserController()
+    private userController = new UserController()
     
     @Mutation(() => User)
     async userSignUp(
@@ -12,7 +12,7 @@ export class UserResolver {
         @Arg("email", _type => String) email: string,
         @Arg("password", _type => String) password: string,
     ) {
-        const user = await this.controller.createUser({
+        const user = await this.userController.createUser({
             username,
             email,
             password,
@@ -23,7 +23,7 @@ export class UserResolver {
 
     @Query(() => [User])
     async getUsers() {
-        const users = await this.controller.getUsers()
+        const users = await this.userController.getUsers()
 
         return users
     }

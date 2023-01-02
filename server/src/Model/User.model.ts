@@ -1,7 +1,7 @@
 import prisma from "src/prisma"
 
 export class UserModel {
-	static async create(data: TCreateData) {
+	async create(data: TCreateData) {
 		const user = await prisma.user.create({
 			data: {
 				...data,
@@ -11,7 +11,7 @@ export class UserModel {
 		return user
 	}
 
-	static async findMany() {
+	async findMany() {
 		const users = await prisma.user.findMany()
 
 		return users
