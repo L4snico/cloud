@@ -20,11 +20,4 @@ export class UserResolver {
 
         return user
     }
-
-    @Query(() => [User])
-    async getUsers() {
-        const users = await this.userController.getUsers()
-
-        return users
-    }
 }
