@@ -3,7 +3,7 @@ import path from "path"
 import { buildSchema } from "type-graphql"
 import { ApolloServer } from "apollo-server"
 import signale from "signale"
-import { gqlResolvers } from "src/graphql/resolvers"
+import { gqlResolvers } from "src/graphql/resolver"
 
 class Server {
 	static async init() {
