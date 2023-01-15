@@ -1,1 +1,1 @@
-export * from "./Secrets"
+export * from "./secrets"
