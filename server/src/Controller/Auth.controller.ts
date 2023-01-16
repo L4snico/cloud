@@ -1,10 +1,8 @@
+import { Controller } from "src/class";
 import { Security } from "src/class/security";
 import { AuthDto } from "src/dto";
-import { AuthModel } from "src/Model";
 
-export class AuthController {
-	protected _authModel = new AuthModel()
-    
+export class AuthController extends Controller {
     async signUpUser(dto: AuthDto.TSignUpUser) {
         const { username, email, password } = dto
         
