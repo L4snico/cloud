@@ -16,9 +16,16 @@ export class ViewResponse {
     }
 }
 
-const reasonTypes = ["subscribed", "undefined", "subscribed", "internal_server_error"] as const
+const reasonTypes = [
+    "subscribed",
+    "undefined",
+    "subscribed",
+    "internal_server_error",
+    "validation_failed",
+] as const
 type TReason =
     | typeof reasonTypes[0]
     | typeof reasonTypes[1]
     | typeof reasonTypes[2]
     | typeof reasonTypes[3]
+    | typeof reasonTypes[4]

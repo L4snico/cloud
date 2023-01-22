@@ -8,6 +8,8 @@ export class AuthController {
     async signUpUser(dto: AuthDto.TSignUpUser) {
         const { username, email, password } = dto
         
+        await this._authModel.signUpUserValidate(dto)
+        
         return await this._authModel.signUpUser({
             username: username,
             email: email,

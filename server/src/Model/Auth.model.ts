@@ -1,6 +1,8 @@
+import Joi from "joi";
 import { Model } from "src/class"
 import { Security } from "src/class/security";
 import { AuthDto } from "src/dto";
+import { ValidatorSchema } from "src/validator";
 
 export class AuthModel extends Model {
     async signUpUser(dto: AuthDto.TSignUpUser) {
@@ -22,5 +24,13 @@ export class AuthModel extends Model {
         const token = Security.generateToken("user", { user: { id: user.id } }, "1d")
 
         return { token }
+    }
+    async signUpUserValidate(dto: AuthDto.TSignUpUser) {
+        await Joi.object({
+            username: ValidatorSchema.username(),
+            email: ValidatorSchema.email(),
+            password: ValidatorSchema.password(),
+        })
+        .validateAsync(dto)
     }
 }
