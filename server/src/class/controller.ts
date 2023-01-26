@@ -1,5 +1,5 @@
-import { AuthModel } from "src/Model";
+import AuthModel from "src/Model/Auth.model";
 
-export class Controller {
+export default class Controller {
 	protected _authModel = new AuthModel()
 }

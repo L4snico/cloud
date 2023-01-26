@@ -1,6 +1,6 @@
 import Joi from "joi";
 
-export class ValidatorSchema {
+class ValidatorSchema {
     static username(required = true) {
         if (!required) {
             return Joi.string().alphanum().min(4).max(32)
@@ -21,3 +21,5 @@ export class ValidatorSchema {
         return Joi.string().min(6).max(32)
     }
 }
+
+export default ValidatorSchema

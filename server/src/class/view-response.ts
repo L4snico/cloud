@@ -1,6 +1,6 @@
 import { ErrorData } from "../graphql/class/response-schema"
 
-export class ViewResponse {
+export default class ViewResponse {
     error = false
     reason: TReason = "undefined"
     successData: any = null

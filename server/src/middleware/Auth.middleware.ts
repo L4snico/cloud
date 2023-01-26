@@ -1,3 +1,5 @@
-export class AuthMiddleware {
+class AuthMiddleware {
 
 }
+
+export default AuthMiddleware

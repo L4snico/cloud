@@ -1,9 +1,11 @@
 import { Query, Resolver } from "type-graphql"
 
 @Resolver()
-export class HeathCheckResolver {
+class HeathCheckResolver {
 	@Query(() => Boolean)
 	async heathCheck() {
 		return true
 	}
 }
+
+export default HeathCheckResolver

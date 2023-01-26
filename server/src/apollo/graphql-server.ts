@@ -2,12 +2,16 @@ import path from "path"
 import { buildSchema } from "type-graphql"
 import { ApolloServer } from "apollo-server"
 import signale from "signale"
-import { gqlResolvers } from "src/graphql/resolver"
+import HeathCheckResolver from "src/graphql/resolver/HealthCheck.resolver"
+import AuthResolver from "src/graphql/resolver/Auth.resolver"
 
-export class GraphQlServer {
+class GraphQlServer {
 	static async init() {
 		const schema = await buildSchema({
-            resolvers: gqlResolvers,
+            resolvers: [
+				HeathCheckResolver,
+				AuthResolver,
+			],
             emitSchemaFile: path.resolve(__dirname, "..", "..", "schema.gql")
         })
 
@@ -20,3 +24,5 @@ export class GraphQlServer {
 		signale.star(`Server URL: ${info.url}`)
 	}
 }
+
+export default GraphQlServer

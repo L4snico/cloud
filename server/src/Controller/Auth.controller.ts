@@ -1,8 +1,8 @@
-import { Controller } from "src/class";
-import { Security } from "src/class/security";
-import { AuthDto } from "src/dto";
+import Controller from "src/class/controller";
+import Security from "src/class/security";
+import AuthDto from "src/dto/Auth.dto";
 
-export class AuthController extends Controller {
+class AuthController extends Controller {
     async signUpUser(dto: AuthDto.TSignUpUser) {
         const { username, email, password } = dto
         
@@ -15,3 +15,5 @@ export class AuthController extends Controller {
         })
     }
 }
+
+export default AuthController

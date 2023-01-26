@@ -1,7 +1,7 @@
 import { Field, ObjectType } from "type-graphql";
 
 @ObjectType()
-export class ResponseSchema<TSuccessData = null> {
+class ResponseSchema<TSuccessData = null> {
     @Field(_type => Boolean)
     error!: boolean
 
@@ -15,7 +15,7 @@ export class ResponseSchema<TSuccessData = null> {
 }
 
 @ObjectType()
-export class ErrorData {
+class ErrorData {
     @Field(_type => String, { nullable: true })
     message!: string | null
     
@@ -27,7 +27,10 @@ export class ErrorData {
 }
 
 @ObjectType()
-export class SuggestedMessage {
+class SuggestedMessage {
     @Field(_type => String)
     ptBr!: string
 }
+
+export default ResponseSchema
+export { ErrorData, SuggestedMessage }

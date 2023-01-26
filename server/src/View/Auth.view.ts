@@ -1,8 +1,8 @@
 import Joi from "joi";
-import { View } from "src/class";
-import { AuthDto } from "src/dto";
+import View from "src/class/view";
+import AuthDto from "src/dto/Auth.dto";
 
-export class AuthView extends View {
+class AuthView extends View {
     constructor() {
         super()
         this._logErrorId = {
@@ -41,3 +41,5 @@ export class AuthView extends View {
         }
     }
 }
+
+export default AuthView

@@ -1,5 +1,7 @@
 import prisma from "src/prisma";
 
-export class Model {
+class Model {
     protected _userRepository = prisma.user
 }
+
+export default Model

@@ -21,10 +21,10 @@ type SignUpUserSchema {
   error: Boolean!
   errorData: ErrorData
   reason: String!
-  successData: SuccessData
+  successData: SuccessDataSchema
 }
 
-type SuccessData {
+type SuccessDataSchema {
   token: String!
 }
 

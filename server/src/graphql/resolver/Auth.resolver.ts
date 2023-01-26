@@ -1,9 +1,9 @@
-import { AuthView } from "src/View";
+import AuthView from "src/View/Auth.view";
 import { Arg, Mutation, Resolver } from "type-graphql";
-import { AuthSchema } from "src/graphql/schema";
+import AuthSchema from "src/graphql/schema/Auth/Auth.schema";
 
 @Resolver()
-export class AuthResolver {
+class AuthResolver {
     private authView = new AuthView()
 
     @Mutation(() => AuthSchema.SignUpUser)
@@ -15,3 +15,5 @@ export class AuthResolver {
         return this.authView.signUpUser({ username, email, password })
     }
 }
+
+export default AuthResolver

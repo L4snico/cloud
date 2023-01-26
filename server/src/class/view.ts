@@ -1,8 +1,8 @@
 import signale from "signale"
-import { AuthController } from "src/Controller"
-import { ViewResponse } from "src/class"
+import AuthController from "src/Controller/Auth.controller"
+import ViewResponse from "src/class/view-response"
 
-export class View {
+class View {
     protected _logErrorId = {
         ptBr: "Falha em alguma View"
     }
@@ -42,3 +42,5 @@ export class View {
         }
     }
 }
+
+export default View

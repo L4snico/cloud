@@ -1,10 +1,10 @@
 import Joi from "joi";
-import { Model } from "src/class"
-import { Security } from "src/class/security";
-import { AuthDto } from "src/dto";
-import { ValidatorSchema } from "src/validator";
+import Model from "src/class/model"
+import Security from "src/class/security";
+import AuthDto from "src/dto/Auth.dto";
+import ValidatorSchema from "src/validator/validator-schema";
 
-export class AuthModel extends Model {
+class AuthModel extends Model {
     async signUpUser(dto: AuthDto.TSignUpUser) {
         const { username, email, password } = dto
         
@@ -34,3 +34,5 @@ export class AuthModel extends Model {
         .validateAsync(dto)
     }
 }
+
+export default AuthModel
