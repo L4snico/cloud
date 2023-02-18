@@ -6,7 +6,7 @@
 type ErrorData {
   message: String
   messages: [String!]
-  suggestedMessage: SuggestedMessage!
+  suggested_message: SuggestedMessage!
 }
 
 type Mutation {
@@ -19,9 +19,9 @@ type Query {
 
 type SignUpUserSchema {
   error: Boolean!
-  errorData: ErrorData
+  error_data: ErrorData
   reason: String!
-  successData: SuccessDataSchema
+  success_data: SuccessDataSchema
 }
 
 type SuccessDataSchema {
@@ -29,5 +29,5 @@ type SuccessDataSchema {
 }
 
 type SuggestedMessage {
-  ptBr: String!
+  pt_br: String!
 }

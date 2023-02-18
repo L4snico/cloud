@@ -19,9 +19,9 @@ class GraphQlServer {
             schema
         })
 
-		const info = await server.listen()
+		const server_info = await server.listen()
 
-		signale.star(`Server URL: ${info.url}`)
+		signale.star(`Server URL: ${server_info.url}`)
 	}
 }
 

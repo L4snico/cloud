@@ -4,7 +4,7 @@ import AuthSchema from "src/graphql/schema/Auth/Auth.schema";
 
 @Resolver()
 class AuthResolver {
-    private authView = new AuthView()
+    protected _auth_view = new AuthView()
 
     @Mutation(() => AuthSchema.SignUpUser)
     async signUpUser(
@@ -12,7 +12,7 @@ class AuthResolver {
         @Arg("email", _type => String) email: string,
         @Arg("password", _type => String) password: string,
     ) {
-        return this.authView.signUpUser({ username, email, password })
+        return this._auth_view.signUpUser({ username, email, password })
     }
 }
 

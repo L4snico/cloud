@@ -8,7 +8,7 @@ class AuthModel extends Model {
     async signUpUser(dto: AuthDto.TSignUpUser) {
         const { username, email, password } = dto
         
-        const user = await this._userRepository.create({
+        const user = await this._user_repository.create({
             data: {
                 username,
                 email,
@@ -25,7 +25,7 @@ class AuthModel extends Model {
 
         return { token }
     }
-    async signUpUserValidate(dto: AuthDto.TSignUpUser) {
+    async signUpUserValidator(dto: AuthDto.TSignUpUser) {
         await Joi.object({
             username: ValidatorSchema.username(),
             email: ValidatorSchema.email(),

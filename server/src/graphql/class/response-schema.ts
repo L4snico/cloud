@@ -8,10 +8,10 @@ class ResponseSchema<TSuccessData = null> {
     @Field(_type => String)
     reason!: string
 
-    successData!: TSuccessData
+    success_data!: TSuccessData
 
     @Field(_type => ErrorData, { nullable: true })
-    errorData!: ErrorData | null
+    error_data!: ErrorData | null
 }
 
 @ObjectType()
@@ -23,13 +23,13 @@ class ErrorData {
     messages!: string[] | null
 
     @Field(_type => SuggestedMessage)
-    suggestedMessage!: SuggestedMessage
+    suggested_message!: SuggestedMessage
 }
 
 @ObjectType()
 class SuggestedMessage {
     @Field(_type => String)
-    ptBr!: string
+    pt_br!: string
 }
 
 export default ResponseSchema

@@ -3,15 +3,15 @@ import { ErrorData } from "../graphql/class/response-schema"
 export default class ViewResponse {
     error = false
     reason: TReason = "undefined"
-    successData: any = null
-    errorData: ErrorData | null = null
+    success_data: any = null
+    error_data: ErrorData | null = null
     
     execute() {
         return {
             error: this.error,
             reason: this.reason,
-            successData: this.successData,
-            errorData: this.errorData,
+            success_data: this.success_data,
+            error_data: this.error_data,
         }
     }
 }

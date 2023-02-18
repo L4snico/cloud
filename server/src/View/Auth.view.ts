@@ -5,24 +5,24 @@ import AuthDto from "src/dto/Auth.dto";
 class AuthView extends View {
     constructor() {
         super()
-        this._logErrorId = {
-            ptBr: "Falha na AuthView"
+        this._log_error_id = {
+            pt_br: "Falha na Autenticação"
         }
     }
     
     async signUpUser(dto: AuthDto.TSignUpUser) {
-        this._logErrorId = {
-            ptBr: "Falha ao inscrever usuário (AuthView)"
+        this._log_error_id = {
+            pt_br: "Falha ao inscrever usuário (Autenticação)"
         }
 
         const { username, email, password } = dto
         
         try {
-            const successData = await this._authController.signUpUser({ username, email, password })
+            const success_data = await this._auth_controller.signUpUser({ username, email, password })
             
-            this._setResponseSuccess("subscribed", successData)
+            this._setResponseSuccess("subscribed", success_data)
         } catch(error) {
-            this._logError(error, [`email: ${email}`])
+            this._logError(error, [`username: ${username}`, `email: ${email}`])
 
             this._setDefaultResponseError()
 
@@ -30,8 +30,8 @@ class AuthView extends View {
                 this._setResponseError("validation_failed", {
                     message: "",
                     messages: error.details.map((e) => e.message),
-                    suggestedMessage: {
-                        ptBr: "Falhou na validação",
+                    suggested_message: {
+                        pt_br: "Falhou na validação",
                     },
                 })
             }
