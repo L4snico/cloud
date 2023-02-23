@@ -4,6 +4,8 @@ import ViewResponse from "src/class/view-response"
 import Joi from "joi"
 import ValidationMessage from "./validation_message"
 
+const validation_message = new ValidationMessage()
+
 class View {
     protected _log_error_id = {
         pt_br: "Falha em algum processo"
@@ -21,9 +23,10 @@ class View {
     protected _handleValidationError(error: any) {
         if (error instanceof Joi.ValidationError) {
             this._setResponseError("validation_failed", {
-                messages: error.details.map((e) => ValidationMessage.getDefault(e.message)),
+                messages: error.details.map((e) => validation_message.getDefault(e.message)),
                 display_messages: {
-                    pt_br: error.details.map((e) => ValidationMessage.getPtBr(e.message)),
+                    pt_br: error.details.map((e) => validation_message.getPtBr(e.message)),
+                    en_us: error.details.map((e) => validation_message.getEnUs(e.message)),
                 },
             })
 

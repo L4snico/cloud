@@ -1,4 +1,3 @@
-import Joi from "joi";
 import Model from "src/class/model"
 import Security from "src/class/security";
 import AuthDto from "src/dto/Auth.dto";
@@ -29,17 +28,26 @@ class AuthModel extends Model {
             username: this._validator_schema.username(undefined, {
                 pt_br: {
                     ...this._VALIDATION_MSG.getAllPtBr("nome de usuário", true, this._LENGTH.min_username, this._LENGTH.max_username)
-                }
+                },
+                en_us: {
+                    ...this._VALIDATION_MSG.getAllEnUs("username", "a", this._LENGTH.min_username, this._LENGTH.max_username)
+                },
             }),
             email: this._validator_schema.email(undefined, {
                 pt_br: {
                     ...this._VALIDATION_MSG.getAllPtBr("e-mail", true)
-                }
+                },
+                en_us: {
+                    ...this._VALIDATION_MSG.getAllEnUs("email", "an")
+                },
             }),
             password: this._validator_schema.password(undefined, {
                 pt_br: {
                     ...this._VALIDATION_MSG.getAllPtBr("senha", false, this._LENGTH.min_password, this._LENGTH.max_password)
-                }
+                },
+                en_us: {
+                    ...this._VALIDATION_MSG.getAllEnUs("password", "a", this._LENGTH.min_password, this._LENGTH.max_password)
+                },
             }),
         })
     }

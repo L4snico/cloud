@@ -21,6 +21,7 @@ class ValidatorSchema {
                 "string.max",
             ], { name, min, max }, {
                 pt_br: display_message?.pt_br,
+                en_us: display_message?.en_us,
             }),
         )
 
@@ -35,6 +36,7 @@ class ValidatorSchema {
                 "string.email",
             ], { name }, {
                 pt_br: display_message?.pt_br,
+                en_us: display_message?.en_us,
             })
         )
 
@@ -56,6 +58,7 @@ class ValidatorSchema {
                 "string.max",
             ], { name, min, max }, {
                 pt_br: display_message?.pt_br,
+                en_us: display_message?.en_us,
             })
         )
 
@@ -67,7 +70,10 @@ class ValidatorSchema {
             ? Joi.string().required().messages(
                 this._messages.get([ "any.required" ], 
                     { name },
-                    { pt_br: display_message?.pt_br }
+                    { 
+                        pt_br: display_message?.pt_br,
+                        en_us: display_message?.en_us,
+                    }
                 )
             ) 
             : Joi.string().optional()

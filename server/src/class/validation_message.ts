@@ -9,16 +9,22 @@ class ValidationMessage {
         return JSON.parse(str)
     }
 
-    static getDefault(validation_message: string) {
-        const message = ValidationMessage.parse(validation_message)
-
-        return message?.default
+    getDefault(validation_message: string) {
+        return this.getMessage("default", validation_message)
     }
 
-    static getPtBr(validation_message: string) {
+    getPtBr(validation_message: string) {
+        return this.getMessage("pt_br", validation_message)
+    }
+
+    getEnUs(validation_message: string) {
+        return this.getMessage("en_us", validation_message)
+    }
+
+    protected getMessage(type: "default" | "pt_br" | "en_us", validation_message: string) {
         const message = ValidationMessage.parse(validation_message)
 
-        return message?.pt_br
+        return message?.[type]
     }
 }
 

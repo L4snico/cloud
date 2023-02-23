@@ -4,6 +4,7 @@
 # -----------------------------------------------
 
 type DisplayMessages {
+  en_us: [String!]
   pt_br: [String!]
 }
 

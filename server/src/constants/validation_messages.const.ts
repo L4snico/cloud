@@ -1,61 +1,12 @@
+import Locale from "src/locale"
+import { TArticles } from "src/locale/messages/en_us"
 import Const from "."
 
-/**
- * PtBr Validation Messages
- */
-class PtBr {
-    protected article = {
-        a: (mf: boolean) => mf ? "um" : "uma",
-        the: (mf: boolean) => mf ? "o" : "a",
-    }
-    
-    validations = {
-        "any.required": (name: string, mf: boolean) => {
-            const a = this.article.a(mf)
-            
-            return `Digite ${a} ${name}`
-        },
-    
-        "string.alphanum": (name: string, mf: boolean) => {
-            const the = this.article.the(mf).toUpperCase()
-            
-            return `${the} ${name} precisa ser alfanumérico`
-        },
-    
-        "string.base": (name: string, mf: boolean) => {
-            const the = this.article.the(mf).toUpperCase()
-    
-            return `${the} ${name} precisa ser do tipo string`
-        },
-    
-        "string.email": (name: string, mf: boolean) => {
-            const the = this.article.the(mf).toUpperCase()
-    
-            return `${the} ${name} é um tipo de e-mail que não aceitamos`
-        },
-    
-        "string.empty": (name: string, mf: boolean) => {
-            const the = this.article.the(mf).toUpperCase()
-    
-            return `${the} ${name} precisa ser preenchido`
-        },
-    
-        "string.max": (name: string, max: number, mf: boolean) => {
-            const the = this.article.the(mf).toUpperCase()
-            
-            return `${the} ${name} precisa ter no máximo ${max} ${max > 1 ? "caracteres" : "caractere"}`
-        },
-        
-        "string.min": (name: string, min: number, mf: boolean) => {
-            const the = this.article.the(mf).toUpperCase()
-    
-            return `${the} ${name} precisa ter no mínimo ${min} ${min > 1 ? "caracteres" : "caractere"}`
-        },
-    }
-}
+const getValidationsList = (validations: any) => Object.getOwnPropertyNames(validations)
 
 class ValidationMessagesConst {
-    static pt_br_validations = new PtBr().validations
+    static pt_br_validations = Locale.Messages.pt_br.validations
+    static en_us_validations = Locale.Messages.en_us.validations
 
     static getAllPtBr(
         name: string, 
@@ -63,9 +14,7 @@ class ValidationMessagesConst {
         min: number = Const.LengthLimit.min, 
         max: number = Const.LengthLimit.max
     ) {
-        const validations = Object.getOwnPropertyNames(
-            this.pt_br_validations
-        )
+        const validations = getValidationsList(this.pt_br_validations)
 
         const allPtBrValidations: any = {}
 
@@ -87,6 +36,40 @@ class ValidationMessagesConst {
         }
 
         return allPtBrValidations
+    }
+
+    static getAllEnUs(
+        name: string,
+        article: TArticles,
+        min: number = Const.LengthLimit.min,
+        max: number = Const.LengthLimit.max
+    ) {
+        const validations = getValidationsList(this.en_us_validations)
+
+        const allEnUsValidations: any = {}
+
+        for (const validation of validations) {
+            switch(validation) {
+                case "string.min":
+                    allEnUsValidations[validation] = this.en_us_validations[validation](name, min)
+                break
+
+                case "string.max":
+                    allEnUsValidations[validation] = this.en_us_validations[validation](name, max)
+                break
+
+                case "any.required":
+                    allEnUsValidations[validation] = this.en_us_validations[validation](name, article)
+                break
+                
+                default:
+                    // @ts-ignore
+                    allEnUsValidations[validation] = this.en_us_validations[validation](name)
+                break
+            }
+        }
+
+        return allEnUsValidations
     }
 }
 

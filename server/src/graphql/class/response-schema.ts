@@ -26,7 +26,10 @@ class ErrorData {
 @ObjectType()
 class DisplayMessages {
     @Field(_type => [String], { nullable: true })
-    pt_br!: string[] | null
+    pt_br?: string[] | null
+
+    @Field(_type => [String], { nullable: true })
+    en_us?: string[] | null
 }
 
 export default ResponseSchema
