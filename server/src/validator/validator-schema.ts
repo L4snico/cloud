@@ -1,24 +1,76 @@
 import Joi from "joi";
+import Const from "src/constants";
+import ValidationMessages, { TDisplayMsg } from "./validation-messages";
 
 class ValidatorSchema {
-    static username(required = true) {
-        if (!required) {
-            return Joi.string().alphanum().min(4).max(32)
-        }
+    private _messages = new ValidationMessages()
+    
+    username(
+        name = "username",
+        display_message?: TDisplayMsg,
+        min: number = Const.LengthLimit.min_username,
+        max: number = Const.LengthLimit.max_username,
+        required = true
+    ) {
+        const schema = Joi.string().alphanum().min(min).max(max).messages(
+            this._messages.get([
+                "string.base",
+                "string.empty",
+                "string.alphanum",
+                "string.min",
+                "string.max",
+            ], { name, min, max }, {
+                pt_br: display_message?.pt_br,
+            }),
+        )
 
-        return Joi.string().required().alphanum().min(4).max(32)
+        return schema.concat(this._requiredString(name, required, display_message))
     }
 
-    static email(required = true) {
-        if (!required) {
-            return Joi.string().email()
-        }
-        
-        return Joi.string().required().email()
+    email(name = "email", display_message?: TDisplayMsg, required = true) {
+        const schema = Joi.string().email().messages(
+            this._messages.get([
+                "string.base",
+                "string.empty",
+                "string.email",
+            ], { name }, {
+                pt_br: display_message?.pt_br,
+            })
+        )
+
+        return schema.concat(this._requiredString(name, required, display_message))
     }
 
-    static password() {
-        return Joi.string().min(6).max(32)
+    password(
+        name = "password", 
+        display_message?: TDisplayMsg,
+        min: number = Const.LengthLimit.min_password, 
+        max: number = Const.LengthLimit.max_password, 
+        required = true
+    ) {
+        const schema = Joi.string().min(min).max(max).messages(
+            this._messages.get([
+                "string.base",
+                "string.empty",
+                "string.min",
+                "string.max",
+            ], { name, min, max }, {
+                pt_br: display_message?.pt_br,
+            })
+        )
+
+        return schema.concat(this._requiredString(name, required, display_message))
+    }
+
+    protected _requiredString(name: string, required: boolean, display_message?: TDisplayMsg) {
+        return required
+            ? Joi.string().required().messages(
+                this._messages.get([ "any.required" ], 
+                    { name },
+                    { pt_br: display_message?.pt_br }
+                )
+            ) 
+            : Joi.string().optional()
     }
 }
 

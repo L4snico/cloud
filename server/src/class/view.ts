@@ -1,17 +1,44 @@
 import signale from "signale"
 import AuthController from "src/Controller/Auth.controller"
 import ViewResponse from "src/class/view-response"
+import Joi from "joi"
+import ValidationMessage from "./validation_message"
 
 class View {
     protected _log_error_id = {
-        pt_br: "Falha em alguma View"
+        pt_br: "Falha em algum processo"
     }
     protected _response = new ViewResponse()
     protected _auth_controller = new AuthController()
 
+    protected _handleError(error: any, debug?: string[]) {
+        if ( this._handleValidationError(error) ) return
+        
+        this._logError(error, debug)
+        this._setDefaultResponseError()
+    }
+    
+    protected _handleValidationError(error: any) {
+        if (error instanceof Joi.ValidationError) {
+            this._setResponseError("validation_failed", {
+                message: "",
+                messages: error.details.map((e) => ValidationMessage.getDefault(e.message)),
+                suggested_message: {
+                    pt_br: error.details.map((e) => ValidationMessage.getPtBr(e.message)).join(". "),
+                },
+            })
+
+            return true
+        }
+
+        return false
+    }
+    
     protected _logError(error: unknown, debug?: string[]) {
         signale.error(this._log_error_id)
+        
         if (debug) debug.forEach((log) => signale.debug(log))
+
         console.error(error)
     }
 

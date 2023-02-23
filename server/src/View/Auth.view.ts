@@ -22,19 +22,7 @@ class AuthView extends View {
             
             this._setResponseSuccess("subscribed", success_data)
         } catch(error) {
-            this._logError(error, [`username: ${username}`, `email: ${email}`])
-
-            this._setDefaultResponseError()
-
-            if (error instanceof Joi.ValidationError) {
-                this._setResponseError("validation_failed", {
-                    message: "",
-                    messages: error.details.map((e) => e.message),
-                    suggested_message: {
-                        pt_br: "Falhou na validação",
-                    },
-                })
-            }
+            this._handleError(error, [`username: ${username}`, `email: ${email}`])
         }
         finally {
             return this._response.execute()
