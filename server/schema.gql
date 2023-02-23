@@ -3,10 +3,13 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type DisplayMessages {
+  pt_br: [String!]
+}
+
 type ErrorData {
-  message: String
+  display_messages: DisplayMessages!
   messages: [String!]
-  suggested_message: SuggestedMessage!
 }
 
 type Mutation {
@@ -26,8 +29,4 @@ type SignUpUserSchema {
 
 type SuccessDataSchema {
   token: String!
-}
-
-type SuggestedMessage {
-  pt_br: String!
 }

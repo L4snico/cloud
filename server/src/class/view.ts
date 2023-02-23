@@ -21,10 +21,9 @@ class View {
     protected _handleValidationError(error: any) {
         if (error instanceof Joi.ValidationError) {
             this._setResponseError("validation_failed", {
-                message: "",
                 messages: error.details.map((e) => ValidationMessage.getDefault(e.message)),
-                suggested_message: {
-                    pt_br: error.details.map((e) => ValidationMessage.getPtBr(e.message)).join(". "),
+                display_messages: {
+                    pt_br: error.details.map((e) => ValidationMessage.getPtBr(e.message)),
                 },
             })
 
@@ -61,10 +60,9 @@ class View {
         this._response.reason = "internal_server_error"
         this._response.success_data = null
         this._response.error_data = {
-            message: null,
             messages: null,
-            suggested_message: {
-                pt_br: "Falha ao se comunicar com o servidor",
+            display_messages: {
+                pt_br: ["Falha ao se comunicar com o servidor"],
             }
         }
     }

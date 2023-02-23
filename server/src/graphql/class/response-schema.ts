@@ -6,7 +6,7 @@ class ResponseSchema<TSuccessData = null> {
     error!: boolean
 
     @Field(_type => String)
-    reason!: string
+    declare reason: string
 
     success_data!: TSuccessData
 
@@ -16,21 +16,18 @@ class ResponseSchema<TSuccessData = null> {
 
 @ObjectType()
 class ErrorData {
-    @Field(_type => String, { nullable: true })
-    message!: string | null
-    
     @Field(_type => [String], { nullable: true })
     messages!: string[] | null
 
-    @Field(_type => SuggestedMessage)
-    suggested_message!: SuggestedMessage
+    @Field(_type => DisplayMessages)
+    display_messages!: DisplayMessages
 }
 
 @ObjectType()
-class SuggestedMessage {
-    @Field(_type => String)
-    pt_br!: string
+class DisplayMessages {
+    @Field(_type => [String], { nullable: true })
+    pt_br!: string[] | null
 }
 
 export default ResponseSchema
-export { ErrorData, SuggestedMessage }
+export { ErrorData, DisplayMessages }

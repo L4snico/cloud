@@ -4,7 +4,7 @@ import { Field, ObjectType } from "type-graphql";
 @ObjectType()
 class SignUpUserSchema extends ResponseSchema<SuccessDataSchema> {
     @Field(_type => SuccessDataSchema, { nullable: true })
-    success_data!: SuccessDataSchema;
+    declare success_data: SuccessDataSchema;
 }
 
 @ObjectType()
