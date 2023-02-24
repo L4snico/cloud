@@ -17,7 +17,7 @@ class PtBr {
         "string.alphanum": (name: string, mf: boolean) => {
             const the = this.article.the(mf).toUpperCase()
             
-            return `${the} ${name} precisa ser alfanumérico`
+            return `${the} ${name} precisa ser ${mf ? "alfanumérico" : "alfanumérica"}`
         },
     
         "string.base": (name: string, mf: boolean) => {
@@ -35,7 +35,7 @@ class PtBr {
         "string.empty": (name: string, mf: boolean) => {
             const the = this.article.the(mf).toUpperCase()
     
-            return `${the} ${name} precisa ser preenchido`
+            return `${the} ${name} precisa ser ${mf ? "preenchido" : "preenchida"}`
         },
     
         "string.max": (name: string, max: number, mf: boolean) => {
